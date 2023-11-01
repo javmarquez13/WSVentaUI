@@ -54,7 +54,6 @@ h1 {
     border: none;
     border-radius: 5px;
     color: white;
-    background: linear-gradient(to right, #ff6f61, #45a049);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }

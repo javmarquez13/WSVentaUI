@@ -1,9 +1,12 @@
-<h1 mat-dialog-title>New Client</h1>
+<h1 mat-dialog-title>{{ obj!=null ? 'Edit current Client' : 'Add New Client'}}</h1>
 <div mat-dialog-content>
-
+    <mat-form-field>
+        <mat-label>Name: </mat-label>
+        <input matInput [(ngModel)]="_name">
+    </mat-form-field> 
 </div>
 
 <div mat-dialog-actions>
     <button mat-raised-button (click)="close()">Cancel</button>
-    <button mat-raised-button (click)="addClient()">Save</button>
+    <button mat-raised-button (click)="obj!=null ? editClient() :addClient()">Save</button>
 </div>

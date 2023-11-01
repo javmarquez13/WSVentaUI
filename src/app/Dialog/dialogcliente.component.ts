@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 
 //Service
 import { WSVentaAPIService } from '../Service/wsventa-api.service';
@@ -6,12 +6,13 @@ import { WSVentaAPIService } from '../Service/wsventa-api.service';
 
 //Material 
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 //Objects
 import { Client } from '../Models/Client';
 import { Response } from '../Models/response';
+
 
 @Component({
     templateUrl: 'dialogcliente.component.html'
@@ -19,12 +20,20 @@ import { Response } from '../Models/response';
 
 export class DialogClientComponent{
 
+    //Variables
+    public _name: string = "";
+
+
     constructor(
         public dialogRef: MatDialogRef<DialogClientComponent>,
         public wsVentaApi: WSVentaAPIService,
         public snackBar: MatSnackBar,
-
-    ) {}
+        @Inject(MAT_DIALOG_DATA) public obj: Client
+    ) {
+        if(this.obj != null){
+            this._name = obj.name;
+        }
+    }
 
 
     close(){
@@ -33,17 +42,30 @@ export class DialogClientComponent{
 
     addClient(){
 
-        const client: Client = { nombre: 'patito'};
-        this.wsVentaApi.AddClient(client).subscribe(response =>{
-            console.log(response.data);
-            if(response.sucess == true){
-                this.close();
-                this.snackBar.open('Client registered sucessfully', '', { 
+        const client: Client = { id: 0, name: this._name};
+        this.wsVentaApi.Add(client).subscribe(response =>{
+            console.log(response);
+            if(response.sucess = true){
+                this.dialogRef.close();
+                this.snackBar.open(`${client.name} was registered successfully`, '', { 
                     duration: 2000 
                 });
             }
+        })      
+    }
+
+
+
+    editClient(){
+        const client: Client = { id: this.obj.id, name: this._name }
+        this.wsVentaApi.Edit(client).subscribe(response =>{
+            if(response.sucess = true){
+                this.dialogRef.close();
+                this.snackBar.open(`${client.name} was updated successfully`, '',{
+                    duration: 2000
+                });
+            }
         })
-        
     }
 
 }

@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Delete</h1>
+<div mat-dialog-content>
+    <h3>Do you really want delete it?
+        <p>
+        Client: {{_name}}
+        </p>
+    </h3>
+    <div mat-dialog-actions>
+        <button mat-raised-button cdkFocusInitial [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button [mat-dialog-close]="true" color="warn">Delete</button>
+    </div>
+</div>

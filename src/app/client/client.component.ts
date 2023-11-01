@@ -14,6 +14,8 @@ import { Response } from '../Models/response';
 
 //COMPONENTS
 import { DialogClientComponent } from '../Dialog/dialogcliente.component';
+import { DialogDeleteComponent } from '../Common/Delete/dialogdelete.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -23,13 +25,16 @@ import { DialogClientComponent } from '../Dialog/dialogcliente.component';
 })
 export class ClientComponent implements OnInit{
 
-  public dataSource: any = [];
-  public displayedColumns: string[] = ['id', 'nombre'];
-  public data: any = [];
+  public _dataSource: any = [];
+  public _displayedColumns: string[] = ['id', 'name', 'actions'];
+  public _data: any = [];
+
+  readonly _with: string = '300px';
 
   constructor(
     private WSVentaAPI: WSVentaAPIService,
-    public dialog: MatDialog 
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar
   ){
 
   }
@@ -41,30 +46,53 @@ export class ClientComponent implements OnInit{
 
   getClientes(){
       this.WSVentaAPI.getClientes().subscribe(response =>{
-      this.dataSource = new MatTableDataSource(response.data);
+      this._dataSource = new MatTableDataSource(response.data);
       console.log(response.data); 
     })
   }
 
-  AddNewClient(client: string){
-    
-    this.data = [
-      { nombre: 'Francisco MarquezC' },
-    ];
+  AddDialog(){
+    const dialogRef = this.dialog.open(DialogClientComponent, {
+      width: this._with
+    });
 
-    this.WSVentaAPI.AddClient(this.data).subscribe(response =>{
-      console.log(response.data);
-    })
-    
-    //this.getClientes();
+    dialogRef.afterClosed().subscribe(result =>{
+      this.getClientes();
+    });
   }
 
 
-
-
-  openAddDialog(){
+  EditDialog(obj: Client){
     const dialogRef = this.dialog.open(DialogClientComponent, {
-      width: '300'
+      width: this._with, 
+      data: obj
+    });
+
+    dialogRef.afterClosed().subscribe(result =>{
+      this.getClientes();
+    });
+  }
+
+
+  DeleteDialog(obj: Client){
+    const dialogRef = this.dialog.open(DialogDeleteComponent, {
+      width: this._with, 
+      data: obj
+    });
+
+    dialogRef.afterClosed().subscribe(result =>{
+      
+      if(result){
+        this.WSVentaAPI.Delete(obj.id).subscribe(response =>{
+          if(response.sucess = true){
+            this.snackBar.open(`${obj.name} was deleted successfully`, '', {
+              duration: 2000
+            })
+            this.getClientes();
+          }
+        })
+      }
+
     });
   }
 }
