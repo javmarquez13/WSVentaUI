@@ -1,8 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { WSVentaAPIService } from '../Service/wsventa-api.service';
-import { Response } from '../Models/response';
+
+
+//MATERTIAL 
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+
+
+//OBJECTS
 import { Client } from '../Models/Client';
+import { Response } from '../Models/response';
+
+
+//COMPONENTS
+import { DialogClientComponent } from '../Dialog/dialogcliente.component';
 
 
 @Component({
@@ -14,10 +25,12 @@ export class ClientComponent implements OnInit{
 
   public dataSource: any = [];
   public displayedColumns: string[] = ['id', 'nombre'];
-
   public data: any = [];
 
-  constructor(private WSVentaAPI: WSVentaAPIService){
+  constructor(
+    private WSVentaAPI: WSVentaAPIService,
+    public dialog: MatDialog 
+  ){
 
   }
 
@@ -49,14 +62,9 @@ export class ClientComponent implements OnInit{
 
 
 
-  onClick(){
-
-
-
-    this.getClientes();
+  openAddDialog(){
+    const dialogRef = this.dialog.open(DialogClientComponent, {
+      width: '300'
+    });
   }
-
-
-
-
 }

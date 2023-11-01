@@ -1,12 +1,12 @@
 
 <div class="container">
     <div class="inner-div">
-        <button mat-button class="buttonRound" (click)="AddNewClient('Francisco Marquez Carreon')">Add Client</button>
+        <button mat-raised-button color="primary" class="buttonRound" (click)="openAddDialog()">Add Client</button>
     </div>
 </div>
 
 
- 
+
 <table mat-table [dataSource]="dataSource">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> id </th>

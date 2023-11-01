@@ -5,6 +5,15 @@ import { Response } from '../Models/response';
 import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Client } from '../Models/Client';
 
+
+const httpOption = {
+  headers: new HttpHeaders({
+      'X-Skip-Certificate-Check': 'true',
+      'Content-Type': 'application/json'
+  })
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -23,11 +32,8 @@ export class WSVentaAPIService {
     return this._http.get<Response>(this.url + '/Clientes/List', {headers});
   }
 
-  AddClient(obj: Client): Observable<Response>{
-    const headers = new HttpHeaders({
-      'X-Skip-Certificate-Check': 'true'
-    });
-    return this._http.post<Response>(this.url + '/Clientes/Add', obj, {headers});
+  AddClient(client: Client): Observable<Response>{
+    return this._http.post<Response>(this.url + '/Clientes/Add', client, httpOption);
   }
 
 }
