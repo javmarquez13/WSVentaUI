@@ -17,9 +17,9 @@ const httpOption = {
 @Injectable({
   providedIn: 'root'
 })
-export class WSVentaAPIService {
+export class apiclient {
 
-  url: string = 'https://192.168.100.14:5401/WSVenta';
+  url: string = 'https://192.168.100.14:5401/WSVenta/Clientes';
 
   constructor(private _http: HttpClient){
    
@@ -31,20 +31,20 @@ export class WSVentaAPIService {
       'X-Skip-Certificate-Check': 'true'
     });
 
-    return this._http.get<Response>(this.url + '/Clientes/List', {headers});
+    return this._http.get<Response>(`${this.url}/List`, {headers});
   }
 
   Add(client: Client): Observable<Response>{
-    return this._http.post<Response>(this.url + '/Clientes/Add', client, httpOption);
+    return this._http.post<Response>(`${this.url}/Add`, client, httpOption);
   }
 
 
   Edit(client: Client): Observable<Response>{
-    return this._http.put<Response>(this.url + '/Clientes/Edit', client, httpOption);
+    return this._http.put<Response>(`${this.url}/Edit`, client, httpOption);
   }
 
   Delete(id: number): Observable<Response>{
-    return this._http.delete<Response>(`${this.url}/Clientes/Delete/${id}`, httpOption);
+    return this._http.delete<Response>(`${this.url}/Delete/${id}`, httpOption);
   }
 
 }

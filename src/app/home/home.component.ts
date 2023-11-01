@@ -36,7 +36,7 @@ export class HomeComponent {
 
     if(_args == "Login") this.router.navigate(['/login']);
 
-    if(_args == "Cliente") this.router.navigate(['/Cliente/List']);
+    if(_args == "Cliente") this.router.navigate(['/clientes']);
   }
   //#endregion
 

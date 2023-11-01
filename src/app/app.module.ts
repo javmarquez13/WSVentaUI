@@ -10,6 +10,7 @@ import { ClientComponent } from './client/client.component';
 import { HomeComponent } from './home/home.component';
 import { DialogClientComponent } from './Dialog/dialogcliente.component';
 import { DialogDeleteComponent } from './Common/Delete/dialogdelete.component';
+import { LoginComponent } from './login/login.component';
 
 //MATERIAL MODULES
 import { MatTableModule } from '@angular/material/table';
@@ -17,10 +18,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCardModule } from '@angular/material/card';
 
 
 //REST API
 import { HttpClientModule } from '@angular/common/http';
+
 
 
 
@@ -30,8 +33,9 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
 
     //COMPONENTS
-    ClientComponent,
+    LoginComponent,
     HomeComponent,
+    ClientComponent,
     DialogClientComponent,
     DialogDeleteComponent
   ],
@@ -48,6 +52,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     MatInputModule,
     MatSnackBarModule,
+    MatCardModule,
 
 
     //REST API

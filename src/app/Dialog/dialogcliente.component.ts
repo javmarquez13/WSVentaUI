@@ -1,7 +1,7 @@
 import { Component, Inject, inject } from '@angular/core';
 
 //Service
-import { WSVentaAPIService } from '../Service/wsventa-api.service';
+import { apiclient } from '../Service/apiclient.service';
 
 
 //Material 
@@ -26,7 +26,7 @@ export class DialogClientComponent{
 
     constructor(
         public dialogRef: MatDialogRef<DialogClientComponent>,
-        public wsVentaApi: WSVentaAPIService,
+        public apiClient: apiclient,
         public snackBar: MatSnackBar,
         @Inject(MAT_DIALOG_DATA) public obj: Client
     ) {
@@ -43,7 +43,7 @@ export class DialogClientComponent{
     addClient(){
 
         const client: Client = { id: 0, name: this._name};
-        this.wsVentaApi.Add(client).subscribe(response =>{
+        this.apiClient.Add(client).subscribe(response =>{
             console.log(response);
             if(response.sucess = true){
                 this.dialogRef.close();
@@ -58,7 +58,7 @@ export class DialogClientComponent{
 
     editClient(){
         const client: Client = { id: this.obj.id, name: this._name }
-        this.wsVentaApi.Edit(client).subscribe(response =>{
+        this.apiClient.Edit(client).subscribe(response =>{
             if(response.sucess = true){
                 this.dialogRef.close();
                 this.snackBar.open(`${client.name} was updated successfully`, '',{

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WSVentaAPIService } from '../Service/wsventa-api.service';
+import { apiclient } from '../Service/apiclient.service';
 
 
 //MATERTIAL 
@@ -32,7 +32,7 @@ export class ClientComponent implements OnInit{
   readonly _with: string = '300px';
 
   constructor(
-    private WSVentaAPI: WSVentaAPIService,
+    private apiClient: apiclient,
     public dialog: MatDialog,
     public snackBar: MatSnackBar
   ){
@@ -45,7 +45,7 @@ export class ClientComponent implements OnInit{
 
 
   getClientes(){
-      this.WSVentaAPI.getClientes().subscribe(response =>{
+      this.apiClient.getClientes().subscribe(response =>{
       this._dataSource = new MatTableDataSource(response.data);
       console.log(response.data); 
     })
@@ -83,7 +83,7 @@ export class ClientComponent implements OnInit{
     dialogRef.afterClosed().subscribe(result =>{
       
       if(result){
-        this.WSVentaAPI.Delete(obj.id).subscribe(response =>{
+        this.apiClient.Delete(obj.id).subscribe(response =>{
           if(response.sucess = true){
             this.snackBar.open(`${obj.name} was deleted successfully`, '', {
               duration: 2000

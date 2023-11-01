@@ -1,0 +1,13 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  form {
+    max-width: 400px; /* Optional: Set a maximum width for the form */
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
