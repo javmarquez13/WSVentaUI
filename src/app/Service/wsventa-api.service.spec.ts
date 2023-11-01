@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { WsventaAPIService } from './wsventa-api.service';
+import { WSVentaAPIService } from './wsventa-api.service';
 
-describe('WsventaAPIService', () => {
-  let service: WsventaAPIService;
+describe('WSVentaAPIService', () => {
+  let service: WSVentaAPIService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(WsventaAPIService);
+    service = TestBed.inject(WSVentaAPIService);
   });
 
   it('should be created', () => {

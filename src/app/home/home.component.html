@@ -1,1 +1,54 @@
-<p>home works!</p>
+<h1>MyFirst Angular App</h1>
+
+<div class="container">
+    <div class="inner-div">
+        <button mat-button class="buttonRound" (click)="onClick('Hola Mundo')">Learn always be an advantage</button>
+    </div>
+</div>
+
+<div class="container">
+    <div class="inner-div">
+        <button mat-button class="buttonRound" (click)="onClick('Hola Angular')">Make it happen</button>
+    </div>
+</div>
+
+
+<div class="container">
+  <div class="inner-div">
+      <button mat-button class="buttonRound" (click)="onClick('Login')">Login Page</button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="inner-div">
+      <button mat-button class="buttonRound" (click)="onClick('Cliente')">Cliente</button>
+  </div>
+</div>
+
+
+<div class="container">
+    <div class="inner-div">
+        <table class="md-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of data">
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.age }}</td>
+              </tr>
+            </tbody>
+          </table>          
+    </div>
+</div>
+
+
+
+
+
+
