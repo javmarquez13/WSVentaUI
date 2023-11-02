@@ -22,7 +22,8 @@ import { MatCardModule } from '@angular/material/card';
 
 
 //REST API
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { JwtInterceptor } from './security/jwt.interceptor';
 
 
 
@@ -58,7 +59,9 @@ import { HttpClientModule } from '@angular/common/http';
     //REST API
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

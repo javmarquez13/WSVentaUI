@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Response } from '../Models/response';
+import { User } from '../Models/User';
+import { map } from 'rxjs/operators';
 
 
 const httpOption = {
@@ -19,12 +21,40 @@ export class ApiAuthService{
 
     url: string = 'https://192.168.100.14:5401/WSVenta/Users/Login';
 
+    private userSubject: BehaviorSubject<User>;
+
+
+    public get userData(): User{
+        return this.userSubject.value;
+    }
+
     constructor(private _http: HttpClient){
 
+        this.userSubject= 
+        new BehaviorSubject<User>(JSON.parse(localStorage.getItem('User') || '{}'));       
     }
 
     login(email: string, password: string): Observable<Response>{
-        return this._http.post<Response>(this.url, {email, password}, httpOption);
+        return this._http.post<Response>(this.url, {email, password}, httpOption).pipe(
+            map(res => {
+                if(res.sucess = true){
+                    const myUser: User = res.data;
+                    localStorage.setItem('User', JSON.stringify(myUser));
+                    this.userSubject.next(myUser);
+                }
+
+                return res;
+            })
+        );      
     }
+
+
+
+    logOut(){
+        localStorage.removeItem('User');
+        this.userSubject.next(null!);
+    }
+
+
 
 }

@@ -34,9 +34,9 @@ export class HomeComponent {
 
     if(_args == "Hola Angular") this.FunctionHolaAngular(_args);
 
-    if(_args == "Login") this.router.navigate(['/login']);
+    if(_args == "Login") this.router.navigate(['/Login']);
 
-    if(_args == "Cliente") this.router.navigate(['/clientes']);
+    if(_args == "Cliente") this.router.navigate(['/Clientes']);
   }
   //#endregion
 
