@@ -18,6 +18,9 @@ export class LoginComponent implements OnInit {
     private router: Router
     ){
 
+      if(this.apiauth.userData){
+        this.router.navigate(['/']);
+      }
   }
 
 
