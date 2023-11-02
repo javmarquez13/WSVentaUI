@@ -42,6 +42,7 @@ export class HomeComponent {
 
   FunHolaMundo(args: string)
   {
+
     console.log(args); 
 
     let _data = this.data;

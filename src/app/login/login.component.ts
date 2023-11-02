@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ApiAuthService } from '../Service/apiauth.service';
 import { Response } from '../Models/response';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { Login } from '../Models/login';
+
 
 @Component({
   selector: 'app-login',
@@ -10,18 +13,22 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  public email: string = "";
-  public password: string = "";
+
+  public loginForm = this.fb.group({
+    email: ['', Validators.required],
+    password: ['', Validators.required]
+  })
+
 
   constructor(
     public apiauth: ApiAuthService,
-    private router: Router
+    private router: Router,
+    private fb: FormBuilder
     ){
 
       if(this.apiauth.userData){
         console.log("Debugging: Auth OK redirecting to home");
-        this.router.navigate(['/']);
-        
+        //this.router.navigate(['/']);    
       }
   }
 
@@ -32,8 +39,8 @@ export class LoginComponent implements OnInit {
 
 
   login(){
-    this.apiauth.login(this.email, this.password).subscribe(response =>{
-      
+    console.log(this.loginForm.value);
+    this.apiauth.login(this.loginForm.value as Login).subscribe(response =>{   
       if(response.sucess = true){
         this.router.navigate(['/']);
       }

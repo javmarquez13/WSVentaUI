@@ -4,6 +4,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { Response } from '../Models/response';
 import { User } from '../Models/User';
 import { map } from 'rxjs/operators';
+import { Login } from '../Models/login';
 
 
 const httpOption = {
@@ -34,8 +35,8 @@ export class ApiAuthService{
         new BehaviorSubject<User>(JSON.parse(localStorage.getItem('User') || '{}'));       
     }
 
-    login(email: string, password: string): Observable<Response>{
-        return this._http.post<Response>(this.url, {email, password}, httpOption).pipe(
+    login(login: Login): Observable<Response>{
+        return this._http.post<Response>(this.url, login, httpOption).pipe(
             map(res => {
                 if(res.sucess = true){
                     const myUser: User = res.data;
