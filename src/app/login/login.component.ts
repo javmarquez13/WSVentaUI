@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
     ){
 
       if(this.apiauth.userData){
+        console.log("Debugging: Auth OK redirecting to home");
         this.router.navigate(['/']);
       }
   }
