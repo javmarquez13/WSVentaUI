@@ -15,8 +15,8 @@ export class LoginComponent implements OnInit {
 
 
   public loginForm = this.fb.group({
-    email: ['', Validators.required],
-    password: ['', Validators.required]
+    email: ['javmarquez13@gmail.com', Validators.required],
+    password: ['123', Validators.required]
   })
 
 
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     ){
 
       if(this.apiauth.userData){
-        console.log("Debugging: Auth OK redirecting to home");
+        //console.log("Debugging: Auth OK redirecting to home");
         //this.router.navigate(['/']);    
       }
   }

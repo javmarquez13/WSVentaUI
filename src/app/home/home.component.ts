@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiAuthService } from '../Service/apiauth.service';
+import { User } from '../Models/User';
 
 
 @Component({
@@ -10,6 +12,8 @@ import { Router } from '@angular/router';
 export class HomeComponent {
   buttonState = 'inactive';
 
+  user: User | undefined;
+
   data = [
     { id: 1, name: 'John Doe', age: 30 },
     { id: 2, name: 'Jane Doe', age: 25 },
@@ -17,7 +21,14 @@ export class HomeComponent {
     // Add more data as needed
   ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,
+              public apitAuth: ApiAuthService) 
+  {
+    this.apitAuth.User.subscribe(res =>{
+      this.user = res;
+      console.log(`Object has changed:  ${res}`);
+      });
+  }
 
   //#region ButtonClick Animation
   onClick(ButtonName: string)
@@ -62,4 +73,14 @@ export class HomeComponent {
 
     this.data.push(_newArryay)
   }
+
+
+
+
+  
+Logout(){
+  console.log("Clicked");
+  this.apitAuth.logOut();
+  this.router.navigate(['/Login']);
+}
 }
