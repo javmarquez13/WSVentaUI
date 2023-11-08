@@ -46,6 +46,9 @@ export class LoginComponent implements OnInit {
       }
       
       console.log(response);
+
+
+      console.log("Bracn Test");
     })
   }
 }
