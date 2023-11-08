@@ -8,9 +8,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //COMPONENTS
 import { ClientComponent } from './client/client.component';
 import { HomeComponent } from './home/home.component';
-import { DialogClientComponent } from './Dialog/dialogcliente.component';
+import { DialogClientComponent } from './client/Dialog/dialogcliente.component';
 import { DialogDeleteComponent } from './Common/Delete/dialogdelete.component';
 import { LoginComponent } from './login/login.component';
+import { SaleComponent } from './sale/sale.component';
+import { DialogSaleComponent } from './sale/dialog/dialogSale.component';
 
 //MATERIAL MODULES
 import { MatTableModule } from '@angular/material/table';
@@ -36,6 +38,7 @@ import { Router } from '@angular/router';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +48,9 @@ import { Router } from '@angular/router';
     HomeComponent,
     ClientComponent,
     DialogClientComponent,
-    DialogDeleteComponent
+    DialogDeleteComponent,
+    SaleComponent,
+    DialogSaleComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +67,6 @@ import { Router } from '@angular/router';
     MatInputModule,
     MatSnackBarModule,
     MatCardModule,
-
 
     //REST API
     HttpClientModule

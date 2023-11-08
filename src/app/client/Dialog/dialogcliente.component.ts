@@ -1,7 +1,7 @@
 import { Component, Inject, inject } from '@angular/core';
 
 //Service
-import { apiclient } from '../Service/apiclient.service';
+import { apiclient } from '../../Service/apiclient.service';
 
 
 //Material 
@@ -10,8 +10,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 //Objects
-import { Client } from '../Models/Client';
-import { Response } from '../Models/response';
+import { Client } from '../../Models/Client';
+import { Response } from '../../Models/response';
 
 
 @Component({

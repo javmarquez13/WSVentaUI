@@ -13,7 +13,7 @@ import { Response } from '../Models/response';
 
 
 //COMPONENTS
-import { DialogClientComponent } from '../Dialog/dialogcliente.component';
+import { DialogClientComponent } from './Dialog/dialogcliente.component';
 import { DialogDeleteComponent } from '../Common/Delete/dialogdelete.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ApiAuthService } from '../Service/apiauth.service';
