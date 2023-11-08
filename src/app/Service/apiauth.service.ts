@@ -22,7 +22,7 @@ export class ApiAuthService{
 
     url: string = 'https://192.168.100.14:5401/WSVenta/Users/Login';
 
-    private userSubject: BehaviorSubject<User>;
+    private userSubject: BehaviorSubject<any>;
     public User: Observable<User>;
 
 
@@ -33,7 +33,8 @@ export class ApiAuthService{
     constructor(private _http: HttpClient){
 
         this.userSubject= 
-        new BehaviorSubject<User>(JSON.parse(localStorage.getItem('User') || '{}'));  
+        new BehaviorSubject<any>(JSON.parse(localStorage.getItem('User') || '{}')); 
+
         this.User = this.userSubject.asObservable();     
     }
 
@@ -55,7 +56,7 @@ export class ApiAuthService{
 
     logOut(){
         localStorage.removeItem('User');
-        this.userSubject.next(null!);       
+        this.userSubject.next({});       
         console.log("Click");
     }
 

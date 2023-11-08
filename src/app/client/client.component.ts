@@ -16,6 +16,10 @@ import { Response } from '../Models/response';
 import { DialogClientComponent } from '../Dialog/dialogcliente.component';
 import { DialogDeleteComponent } from '../Common/Delete/dialogdelete.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ApiAuthService } from '../Service/apiauth.service';
+import { User } from '../Models/User';
+
+
 
 
 @Component({
@@ -29,14 +33,21 @@ export class ClientComponent implements OnInit{
   public _displayedColumns: string[] = ['id', 'name', 'actions'];
   public _data: any = [];
 
+  public user: User | undefined;
+
   readonly _with: string = '300px';
 
   constructor(
     private apiClient: apiclient,
     public dialog: MatDialog,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public apiAuth: ApiAuthService
   ){
 
+    this.apiAuth.User.subscribe(res =>{
+      this.user = res;
+      console.log(`Debugging ${res}`);
+    })
   }
 
   ngOnInit(): void {

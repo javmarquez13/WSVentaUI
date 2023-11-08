@@ -7,14 +7,16 @@ export class AuthGuard implements CanActivate{
     
     constructor(
         private router: Router,
-        private apiAuthService: ApiAuthService        
+        private apiAuth: ApiAuthService        
         
         ){
     }
     canActivate(route: ActivatedRouteSnapshot){
-        const user = this.apiAuthService.userData;
+        const user = this.apiAuth.userData
 
-        if(user){
+        console.log("Object has changed user:" + user.email);
+
+        if(user.email != undefined){
             return true;
         }
 

@@ -12,8 +12,6 @@ import { User } from '../Models/User';
 export class HomeComponent {
   buttonState = 'inactive';
 
-  user: User | undefined;
-
   data = [
     { id: 1, name: 'John Doe', age: 30 },
     { id: 2, name: 'Jane Doe', age: 25 },
@@ -21,13 +19,9 @@ export class HomeComponent {
     // Add more data as needed
   ];
 
-  constructor(private router: Router,
-              public apitAuth: ApiAuthService) 
+  constructor(private router: Router) 
   {
-    this.apitAuth.User.subscribe(res =>{
-      this.user = res;
-      console.log(`Object has changed:  ${res}`);
-      });
+
   }
 
   //#region ButtonClick Animation
@@ -73,14 +67,4 @@ export class HomeComponent {
 
     this.data.push(_newArryay)
   }
-
-
-
-
-  
-Logout(){
-  console.log("Clicked");
-  this.apitAuth.logOut();
-  this.router.navigate(['/Login']);
-}
 }

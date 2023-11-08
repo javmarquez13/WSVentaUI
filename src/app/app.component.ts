@@ -17,7 +17,7 @@ export class AppComponent {
   {
     this.apitAuth.User.subscribe(res =>{
     this.user = res;
-    console.log(`Object has changed:  ${res}`);
+    console.log(`Object has changed user:  ${res.email}`);
     });
   }
 

@@ -1,6 +1,6 @@
 <router-outlet></router-outlet>
 
-<button mat-raised-button color="primary" class="buttonRound" (click)="Logout">Logout</button>
+<button mat-button color="Secondary" class="buttonRound" (click)="Logout()" *ngIf="user">{{user.name}} Logout</button>
 
 
 
